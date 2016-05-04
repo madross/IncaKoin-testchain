@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QSystemTrayIcon>
+#include <QLabel>
 
 #include "blockbrowser.h"
 
@@ -28,6 +29,21 @@ class QProgressBar;
 class QStackedWidget;
 class QUrl;
 QT_END_NAMESPACE
+
+class ActiveLabel : public QLabel
+{
+    Q_OBJECT
+public:
+    ActiveLabel(const QString & text = "", QWidget * parent = 0);
+    ~ActiveLabel(){}
+
+signals:
+    void clicked();
+
+protected:
+    void mouseReleaseEvent (QMouseEvent * event) ;
+
+};
 
 /**
   IncaKoin GUI main class. This class represents the main window of the IncaKoin UI. It communicates with both the client and
@@ -68,11 +84,13 @@ private:
     SendCoinsDialog *sendCoinsPage;
     SignVerifyMessageDialog *signVerifyMessageDialog;
 
-    QLabel *labelEncryptionIcon;
+    ActiveLabel *labelEncryptionIcon;
     QLabel *labelStakingIcon;
     QLabel *labelConnectionsIcon;
     QLabel *labelBlocksIcon;
     QLabel *progressBarLabel;
+    QToolBar *mainToolbar;
+    QToolBar *secondaryToolbar;
     QProgressBar *progressBar;
 
     QMenuBar *appMenuBar;
@@ -89,9 +107,10 @@ private:
     QAction *toggleHideAction;
     QAction *exportAction;
     QAction *encryptWalletAction;
-	QAction *unlockWalletAction;
     QAction *backupWalletAction;
     QAction *changePassphraseAction;
+    QAction *unlockWalletAction;
+    QAction *lockWalletAction;
     QAction *aboutQtAction;
     QAction *openRPCConsoleAction;
     QAction *blockAction;
@@ -103,6 +122,8 @@ private:
 	BlockBrowser *blockBrowser;
 
     QMovie *syncIconMovie;
+
+    uint64 nWeight;
 
     /** Create the main UI actions. */
     void createActions();
@@ -177,12 +198,15 @@ private slots:
     /** Ask for passphrase to unlock wallet temporarily */
     void unlockWallet();
 
+    void lockWallet();
+
     /** Show window if hidden, unminimize when minimized, rise when obscured or show if hidden and fToggleHidden is true */
     void showNormalIfMinimized(bool fToggleHidden = false);
     /** simply calls showNormalIfMinimized(true) for use in SLOT() macro */
     void toggleHidden();
-	
-	void updateStakingIcon();
+
+    void updateWeight();
+    void updateStakingIcon();
 };
 
 #endif
