@@ -23,7 +23,7 @@ static std::map<int, unsigned int> mapStakeModifierCheckpoints =
     ;
 
 // Get time weight - added for weight calc in coin control
-int64 GetWeight(int64 nIntervalBeginning, int64 nIntervalEnd)
+int64_t GetWeight(int64 nIntervalBeginning, int64 nIntervalEnd)
 {
     // Kernel hash weight starts from 0 at the 10-day min age
     // this change increases active coins participating the hash and helps
