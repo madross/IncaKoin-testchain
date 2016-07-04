@@ -1717,6 +1717,7 @@ Value repairwallet(const Array& params, bool fHelp)
 
     int nMismatchSpent;
     int64_t nBalanceInQuestion;
+    int nOrphansFound;
     pwalletMain->FixSpentCoins(nMismatchSpent, nBalanceInQuestion, nOrphansFound);
     Object result;
     if (nMismatchSpent == 0 && nOrphansFound == 0)
