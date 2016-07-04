@@ -2138,7 +2138,7 @@ void CWallet::FixSpentCoins(int& nMismatchFound, int64& nBalanceInQuestion, int&
                     pcoin->WriteToDisk();
                 }
                 if (fUpdated)
- +                NotifyTransactionChanged(this, hash, CT_UPDATED);
+                 NotifyTransactionChanged(this, hash, CT_UPDATED);
             }
 			NotifyTransactionChanged(this, hash, CT_UPDATED);
         }
