@@ -1695,8 +1695,8 @@ Value checkwallet(const Array& params, bool fHelp)
     int nOrphansFound;
     pwalletMain->FixSpentCoins(nMismatchSpent, nBalanceInQuestion, nOrphansFound, true);
     Object result;
-    if (nMismatchSpent == 0) && nOrphansFound == 0);
-        result.push_back(Pair("wallet check passed", true))
+    if (nMismatchSpent == 0 && nOrphansFound == 0))
+        result.push_back(Pair("wallet check passed", true));
     else
     {
         result.push_back(Pair("mismatched spent coins", nMismatchSpent));
@@ -1719,8 +1719,8 @@ Value repairwallet(const Array& params, bool fHelp)
     int64 nBalanceInQuestion;
     pwalletMain->FixSpentCoins(nMismatchSpent, nBalanceInQuestion, nOrphansFound);
     Object result;
-    if (nMismatchSpent == 0) && nOrphansFound == 0)
-    	result.push_back(Pair("wallet check passed", true));
+    if (nMismatchSpent == 0 && nOrphansFound == 0)
+        result.push_back(Pair("wallet check passed", true));
     else
     {
         result.push_back(Pair("mismatched spent coins", nMismatchSpent));
